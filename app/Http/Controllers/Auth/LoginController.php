@@ -24,7 +24,8 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/admin/dashboard');
+            // Redirect explicitly to the admin dashboard route to avoid accidental redirects to the public home
+            return redirect()->route('admin.dashboard');
         }
 
         return back()->withErrors([
