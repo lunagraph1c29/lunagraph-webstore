@@ -10,9 +10,9 @@
             <div class="hero-text">
                 <h1>Selamat Datang di {{ $setting->site_name ?? 'Katalog Produk' }}</h1>
                 <p>{{ $setting->description ?? 'Temukan berbagai produk berkualitas dengan harga terbaik' }}</p>
-                <div class="hero-buttons">
+                <div class="hero-buttons" style = "display: flex; gap: 15px; margin-top: 20px;">
                     <a href="{{ route('catalog') }}" class="btn btn-light">🛒 Lihat Katalog</a>
-                    <a href="https://wa.me/{{ $setting->whatsapp ?? '' }}" class="btn btn-success" target="_blank">💬 Hubungi Kami</a>
+                    <a href="https://wa.me/{{ $setting->whatsapp ?? '62xxxxx' }}" class="btn btn-success" target="_blank">💬 Hubungi Kami</a>
                 </div>
             </div>
             <div class="hero-icon">
@@ -51,7 +51,7 @@
                     </p>
                     @endif
                     <a href="{{ route('product.detail', $product->id) }}" class="btn btn-primary" style="width: 100%;">
-                        👁️ Lihat Detail
+                        Lihat Detail
                     </a>
                 </div>
             </div>

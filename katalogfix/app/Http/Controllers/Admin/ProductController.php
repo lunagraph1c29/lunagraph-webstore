@@ -35,10 +35,10 @@ class ProductController extends Controller
 
         $data = $request->all();
         
-        // Set default status if not provided
+        // Set default status kalau tidak diberikan
         $data['status'] = $request->has('status') ? 1 : 0;
 
-        // Handle image upload
+        // upload gambar
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('products', 'public');
         }
@@ -57,7 +57,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        $request->validate([
+        $request->validate([    
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'description' => 'required',

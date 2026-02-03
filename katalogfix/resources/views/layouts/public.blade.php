@@ -331,7 +331,7 @@
                 </div>
                 <div>
                     <h3>Kontak</h3>
-                    <p>📱 {{ $setting->whatsapp ?? '-' }}</p>
+                    <p>{{ $setting->whatsapp ?? '-' }}</p>
                 </div>
             </div>
             <div class="footer-bottom">

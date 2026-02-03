@@ -41,11 +41,7 @@
             text-align: center;
         }
         
-        .login-icon {
-            font-size: 4rem;
-            margin-bottom: 15px;
-        }
-        
+
         .login-header h1 {
             font-size: 2rem;
             margin-bottom: 8px;
@@ -136,23 +132,6 @@
             display: block;
         }
         
-        .form-check {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 25px;
-        }
-        
-        .form-check input {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-        
-        .form-check label {
-            cursor: pointer;
-        }
-        
         .btn {
             width: 100%;
             padding: 15px;
@@ -220,30 +199,11 @@
             text-decoration: underline;
         }
         
-        .info-box {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        
-        .info-box small {
-            color: #666;
-            display: block;
-            line-height: 1.6;
-        }
-        
         code {
             background: #e9ecef;
             padding: 2px 6px;
             border-radius: 3px;
             font-family: monospace;
-        }
-        
-        .footer-text {
-            text-align: center;
-            margin-top: 20px;
-            color: white;
         }
         
         @media (max-width: 480px) {
@@ -265,7 +225,6 @@
     <div class="login-container">
         <div class="login-card">
             <div class="login-header">
-                <div class="login-icon">🛡️</div>
                 <h1>Admin Login</h1>
                 <p>Masuk ke Dashboard Admin</p>
             </div>
@@ -289,7 +248,7 @@
                     <div class="form-group">
                         <label for="email" class="form-label">📧 Email Address</label>
                         <div class="input-wrapper">
-                            <span class="input-icon">👤</span>
+                            <span class="input-icon"></span>
                             <input type="email" 
                                    class="form-control" 
                                    id="email" 
@@ -303,26 +262,21 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="password" class="form-label">🔒 Password</label>
+                        <label for="password" class="form-label">Password</label>
                         <div class="input-wrapper">
-                            <span class="input-icon">🔑</span>
+                            <span class="input-icon"></span>
                             <input type="password" 
                                    class="form-control" 
                                    id="password" 
                                    name="password"
-                                   placeholder="••••••••"
+                                   placeholder="password"
                                    required>
                         </div>
                         <div class="error-message" id="passwordError"></div>
                     </div>
                     
-                    <div class="form-check">
-                        <input type="checkbox" id="remember" name="remember">
-                        <label for="remember">🕐 Ingat saya</label>
-                    </div>
-                    
                     <button type="submit" class="btn btn-primary">
-                        🚀 Masuk ke Dashboard
+                        Masuk ke Dashboard
                     </button>
                 </form>
                 
@@ -333,19 +287,7 @@
                 <div class="text-center">
                     <a href="{{ route('home') }}" class="link">← Kembali ke Website</a>
                 </div>
-                
-                <div class="info-box">
-                    <small>
-                        ℹ️ <strong>Default Login:</strong><br>
-                        Email: <code>admin@katalog.com</code><br>
-                        Password: <code>password123</code>
-                    </small>
-                </div>
             </div>
-        </div>
-        
-        <div class="footer-text">
-            <small>🔒 Halaman ini dilindungi dan hanya untuk admin</small>
         </div>
     </div>
 

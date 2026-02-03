@@ -79,7 +79,7 @@
     
     <div class="card">
         <div class="card-header">
-            <h3>⚡ Aksi Cepat</h3>
+            <h3>Aksi Cepat</h3>
         </div>
         <div class="card-body">
             <div style="display: grid; gap: 10px;">
@@ -90,21 +90,14 @@
                     ➕ Tambah Kategori
                 </a>
                 <a href="{{ route('admin.settings.index') }}" class="btn" style="background: #17a2b8; color: white; text-align: center; text-decoration: none;">
-                    ⚙️ Pengaturan Website
+                    Pengaturan Website
                 </a>
                 <a href="{{ route('home') }}" target="_blank" class="btn" style="background: white; border: 2px solid #667eea; color: #667eea; text-align: center; text-decoration: none;">
-                    🌐 Lihat Website
+                    Lihat Website
                 </a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- WELCOME MESSAGE -->
-<div class="card" style="margin-top: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-    <div class="card-body">
-        <h2 style="margin-bottom: 10px;">👋 Selamat Datang, {{ Auth::user()->name }}!</h2>
-        <p style="margin: 0; opacity: 0.9;">Kelola produk dan website Anda dengan mudah melalui dashboard admin ini.</p>
-    </div>
-</div>
 @endsection

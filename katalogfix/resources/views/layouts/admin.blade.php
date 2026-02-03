@@ -32,12 +32,25 @@
             position: fixed;
             height: 100vh;
             overflow-y: auto;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .sidebar.collapsed {
+            width: 70px;
         }
         
         .sidebar-brand {
             font-size: 1.3rem;
             font-weight: bold;
             margin-bottom: 30px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        .sidebar.collapsed .sidebar-brand {
+            font-size: 1.5rem;
+            text-align: center;
         }
         
         .sidebar-menu {
@@ -50,7 +63,9 @@
         
         .sidebar-menu a,
         .sidebar-menu button {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             padding: 12px 15px;
             color: rgba(255,255,255,0.8);
             border-radius: 8px;
@@ -62,6 +77,23 @@
             cursor: pointer;
             font-size: 1rem;
             text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .sidebar.collapsed .sidebar-menu a,
+        .sidebar.collapsed .sidebar-menu button {
+            justify-content: center;
+            padding: 12px 10px;
+        }
+        
+        .sidebar.collapsed .menu-text {
+            display: none;
+        }
+        
+        .menu-icon {
+            font-size: 1.2rem;
+            min-width: 24px;
+            text-align: center;
         }
         
         .sidebar-menu a:hover,
@@ -77,12 +109,49 @@
             margin: 15px 0;
         }
         
+        /* TOGGLE BUTTON */
+        .sidebar-toggle {
+            position: absolute;
+            top: 20px;
+            right: -15px;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            z-index: 1001;
+        }
+        
+        .sidebar-toggle:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .sidebar-toggle-icon {
+            transition: transform 0.3s;
+        }
+        
+        .sidebar.collapsed .sidebar-toggle-icon {
+            transform: rotate(180deg);
+        }
+        
         /* MAIN CONTENT */
         .main-content {
             margin-left: 250px;
             flex: 1;
             display: flex;
             flex-direction: column;
+            transition: margin-left 0.3s ease;
+        }
+        
+        .sidebar.collapsed + .main-content {
+            margin-left: 70px;
         }
         
         /* TOPBAR */
@@ -91,8 +160,23 @@
             padding: 15px 30px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
+        }
+        
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
         }
         
         .user-menu {
@@ -316,16 +400,47 @@
             min-height: 100px;
         }
         
+        /* OVERLAY untuk mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        
+        .sidebar-overlay.show {
+            display: block;
+        }
+        
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .sidebar {
-                width: 100%;
-                position: static;
-                height: auto;
+                transform: translateX(-100%);
+                width: 250px;
+            }
+            
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+            
+            .sidebar.collapsed {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar-toggle {
+                display: none;
             }
             
             .main-content {
-                margin-left: 0;
+                margin-left: 0 !important;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
             }
             
             .grid-2,
@@ -339,35 +454,46 @@
 </head>
 <body>
     <div class="admin-wrapper">
+        <!-- SIDEBAR OVERLAY (mobile only) -->
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMobileSidebar()"></div>
+        
         <!-- SIDEBAR -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <span class="sidebar-toggle-icon">◀</span>
+            </button>
+            
             <div class="sidebar-brand">
-                🛡️ Admin Panel
+                <span class="brand-full">  Admin Panel</span>
             </div>
             
             <ul class="sidebar-menu">
                 <li>
                     <a href="{{ route('admin.dashboard') }}" 
                        class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                        📊 Dashboard
+                        <span class="menu-icon">📊</span>
+                        <span class="menu-text">Dashboard</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.categories.index') }}" 
                        class="{{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
-                        🏷️ Kategori
+                        <span class="menu-icon">🏷️</span>
+                        <span class="menu-text">Kategori</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.products.index') }}" 
                        class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
-                        📦 Produk
+                        <span class="menu-icon">📦</span>
+                        <span class="menu-text">Produk</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.settings.index') }}" 
                        class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
-                        ⚙️ Pengaturan
+                        <span class="menu-icon">⚙️</span>
+                        <span class="menu-text">Pengaturan</span>
                     </a>
                 </li>
                 
@@ -375,13 +501,15 @@
                 
                 <li>
                     <a href="{{ route('home') }}" target="_blank">
-                        🌐 Lihat Website
+                        <span class="menu-text">Lihat Website</span>
                     </a>
                 </li>
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit">🚪 Logout</button>
+                        <button type="submit">
+                            <span class="menu-text">Logout</span>
+                        </button>
                     </form>
                 </li>
             </ul>
@@ -391,6 +519,12 @@
         <div class="main-content">
             <!-- TOPBAR -->
             <div class="topbar">
+                <div class="topbar-left">
+                    <button class="mobile-menu-toggle" onclick="toggleMobileSidebar()">
+                        ☰
+                    </button>
+                </div>
+                
                 <div class="user-menu">
                     <button class="user-btn" onclick="toggleDropdown(event)">
                         👤 {{ Auth::user()->name }} ▼
@@ -402,7 +536,7 @@
                         <div class="user-dropdown-item">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit">🚪 Logout</button>
+                                <button type="submit">Logout</button>
                             </form>
                         </div>
                     </div>
@@ -431,6 +565,39 @@
     </div>
 
     <script>
+        // Toggle sidebar (desktop)
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('collapsed');
+            
+            // Simpan state ke localStorage
+            if (sidebar.classList.contains('collapsed')) {
+                localStorage.setItem('sidebarCollapsed', 'true');
+            } else {
+                localStorage.setItem('sidebarCollapsed', 'false');
+            }
+        }
+        
+        // Toggle mobile sidebar
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.toggle('mobile-open');
+            overlay.classList.toggle('show');
+        }
+        
+        // Load sidebar state dari localStorage
+        window.addEventListener('DOMContentLoaded', function() {
+            const sidebarCollapsed = localStorage.getItem('sidebarCollapsed');
+            const sidebar = document.getElementById('sidebar');
+            
+            if (sidebarCollapsed === 'true') {
+                sidebar.classList.add('collapsed');
+            }
+        });
+        
+        // User dropdown
         function toggleDropdown(e) {
             e.stopPropagation();
             const dropdown = document.getElementById('userDropdown');
