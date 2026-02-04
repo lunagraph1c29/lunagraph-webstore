@@ -448,6 +448,37 @@
                 grid-template-columns: 1fr;
             }
         }
+                /* ===============================
+           FIX LARAVEL DEFAULT PAGINATION
+           (SVG PANAH KEGEDEAN)
+           =============================== */
+
+        nav[aria-label="Pagination Navigation"] {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        nav[aria-label="Pagination Navigation"] svg {
+            width: 16px !important;
+            height: 16px !important;
+            max-width: 16px !important;
+            max-height: 16px !important;
+            display: inline-block !important;
+        }
+
+        nav[aria-label="Pagination Navigation"] a,
+        nav[aria-label="Pagination Navigation"] span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+            height: 36px;
+            padding: 0 10px;
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+
     </style>
     
     @yield('styles')
