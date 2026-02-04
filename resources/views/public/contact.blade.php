@@ -183,14 +183,17 @@
                 </a>
             </div>
             
-            <div class="contact-card">
-                <div class="contact-icon" style="color: #667eea;">📧</div>
-                <h3>Email</h3>
-                <p>info@{{ strtolower(str_replace(' ', '', $setting->site_name ?? 'katalogproduk')) }}.com</p>
-                <a href="mailto:info@example.com" class="btn btn-primary">
-                    Kirim Email
-                </a>
-            </div>
+           <div class="contact-card">
+    <div class="contact-icon" style="color: #667eea;">📧</div>
+    <h3>Email</h3>
+
+    <p>info@katalogproduk.com</p>
+
+    <a href="mailto:info@katalogproduk.com" class="btn btn-primary">
+        Kirim Email
+    </a>
+</div>
+
             
             <div class="contact-card">
                 <div class="contact-icon" style="color: #17a2b8;">📍</div>

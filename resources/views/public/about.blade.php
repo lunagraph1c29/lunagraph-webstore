@@ -52,12 +52,6 @@
         box-shadow: 0 2px 15px rgba(0,0,0,0.1);
     }
     
-    .vm-icon {
-        font-size: 3rem;
-        margin-bottom: 20px;
-        color: #667eea;
-    }
-    
     .vm-card h3 {
         font-size: 1.5rem;
         margin-bottom: 15px;
@@ -157,12 +151,10 @@
         <!-- VISION & MISSION -->
         <div class="vision-mission">
             <div class="vm-card">
-                <div class="vm-icon">👁️</div>
                 <h3>Visi Kami</h3>
                 <p>Menjadi penyedia produk terpercaya dan terdepan yang memberikan solusi terbaik untuk kebutuhan pelanggan dengan standar kualitas tertinggi.</p>
             </div>
             <div class="vm-card">
-                <div class="vm-icon">🎯</div>
                 <h3>Misi Kami</h3>
                 <ul>
                     <li>Menyediakan produk berkualitas tinggi</li>

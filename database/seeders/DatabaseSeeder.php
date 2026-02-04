@@ -10,18 +10,17 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Buat admin user
-    User::updateOrCreate(
-    ['email' => 'admin@katalog.com'],
-    [
-        'name' => 'Admin',
-        'password' => Hash::make('password123'),
-        'role' => 'admin',
-    ]
-);
+        // ADMIN
+        User::updateOrCreate(
+            ['email' => 'admin@katalog.com'],
+            [
+                'name' => 'Admin',
+                'password' => Hash::make('password123'),
+                'role' => 'admin',
+            ]
+        );
 
-
-        // Panggil seeder lain
+        // SEEDER LAIN
         $this->call([
             SettingSeeder::class,
             CategorySeeder::class,

@@ -148,7 +148,7 @@
                             </p>
                             @endif
                             <a href="{{ route('product.detail', $product->id) }}" class="btn btn-primary" style="width: 100%;">
-                                👁️ Lihat Detail
+                                Lihat Detail
                             </a>
                         </div>
                     </div>

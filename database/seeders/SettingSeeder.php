@@ -9,10 +9,13 @@ class SettingSeeder extends Seeder
 {
     public function run(): void
     {
-        Setting::create([
-            'site_name' => 'Katalog Produk',
-            'whatsapp' => '628123456789',
-            'description' => 'Website katalog produk terbaik dengan berbagai pilihan kategori dan produk berkualitas.',
-        ]);
+       Setting::updateOrCreate(
+    ['id' => 1],
+    [
+        'site_name' => 'Katalog Produk',
+        'whatsapp' => '6282120518342',
+        'description' => 'Website katalog produk terbaik dengan berbagai pilihan kategori dan produk berkualitas.',
+    ]);
+
     }
 }

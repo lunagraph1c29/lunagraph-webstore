@@ -521,6 +521,14 @@
                     </a>
                 </li>
                 <li>
+    <a href="{{ route('admin.orders.index') }}"
+       class="{{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
+        <span class="menu-icon">🧾</span>
+        <span class="menu-text">Order</span>
+    </a>
+</li>
+
+                <li>
                     <a href="{{ route('admin.settings.index') }}" 
                        class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
                         <span class="menu-icon">⚙️</span>
