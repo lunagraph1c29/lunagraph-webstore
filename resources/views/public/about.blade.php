@@ -21,10 +21,20 @@
     .about-image {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         border-radius: 10px;
-        padding: 60px;
+        padding: 40px; /* dikurangi biar tidak terlalu kosong */
         text-align: center;
         color: white;
         box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    /* ✅ LOGO FIX */
+    .about-logo {
+        max-height: 180px;   /* batas tinggi logo */
+        width: auto;         
+        max-width: 100%;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
     }
     
     .about-text h2 {
@@ -120,7 +130,6 @@
 @endsection
 
 @section('content')
-<!-- PAGE HEADER -->
 <div class="page-header">
     <div class="container">
         <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Tentang Kami</h1>
@@ -128,27 +137,28 @@
     </div>
 </div>
 
-<!-- ABOUT CONTENT -->
 <section class="section">
     <div class="container">
         <div class="about-content">
             <div class="about-image">
                 @if($setting && $setting->logo)
-                <img src="{{ asset('storage/' . $setting->logo) }}" alt="{{ $setting->site_name }}" style="max-width: 100%; border-radius: 10px;">
+                    <img src="{{ asset('storage/' . $setting->logo) }}" 
+                         alt="{{ $setting->site_name }}" 
+                         class="about-logo">
                 @else
-                <div>
-                    <div style="font-size: 5rem; margin-bottom: 20px;">🏪</div>
-                    <h2>{{ $setting->site_name ?? 'Katalog Produk' }}</h2>
-                </div>
+                    <div>
+                        <div style="font-size: 5rem; margin-bottom: 20px;">🏪</div>
+                        <h2>{{ $setting->site_name ?? 'Katalog Produk' }}</h2>
+                    </div>
                 @endif
             </div>
+
             <div class="about-text">
                 <h2>{{ $setting->site_name ?? 'Katalog Produk' }}</h2>
                 <p>{{ $setting->description ?? 'Kami adalah penyedia produk berkualitas dengan komitmen untuk memberikan pelayanan terbaik kepada pelanggan.' }}</p>
             </div>
         </div>
         
-        <!-- VISION & MISSION -->
         <div class="vision-mission">
             <div class="vm-card">
                 <h3>Visi Kami</h3>
@@ -165,7 +175,6 @@
             </div>
         </div>
         
-        <!-- VALUES -->
         <div>
             <h2 style="text-align: center; font-size: 2rem; margin-bottom: 10px;">Nilai-Nilai Kami</h2>
             <div class="values-grid">
@@ -194,7 +203,6 @@
     </div>
 </section>
 
-<!-- CTA SECTION -->
 <section style="padding: 0 20px 80px;">
     <div class="container">
         <div class="cta-section">
