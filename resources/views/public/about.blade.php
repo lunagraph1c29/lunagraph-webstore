@@ -19,17 +19,16 @@
     }
     
     .about-image {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 10px;
-        padding: 40px; /* dikurangi biar tidak terlalu kosong */
-        text-align: center;
-        color: white;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-    }
-
-    /* ✅ LOGO FIX */
+    background: #ffffff; 
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+}
+   
     .about-logo {
-        max-height: 180px;   /* batas tinggi logo */
+        max-height: 180px;  
         width: auto;         
         max-width: 100%;
         object-fit: contain;
