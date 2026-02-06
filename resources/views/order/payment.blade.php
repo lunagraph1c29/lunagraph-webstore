@@ -47,6 +47,7 @@
 <div class="payment-box">
     <h2>💳 Pembayaran QRIS</h2>
     <p>Silakan scan QR di bawah</p>
+    <p>*jangan lupa tulis nama dan produk anda dicatatan e-wallet atau m-banking sebelum membayar</p>
 
     <div class="payment-info">
         <p><strong>Produk:</strong> {{ $order->product->name }}</p>

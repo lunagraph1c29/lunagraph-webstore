@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
-    // Home Page
+    // home
     public function home()
     {
         $setting = Setting::first();
@@ -22,7 +22,7 @@ class PublicController extends Controller
         return view('public.home', compact('setting', 'products'));
     }
 
-    // Catalog Page
+    // catalog page
     public function catalog(Request $request)
     {
         $setting = Setting::first();
@@ -30,7 +30,7 @@ class PublicController extends Controller
         
         $query = Product::where('status', 1)->with('category');
         
-        // Filter by category
+        // filter by category
         if ($request->category && $request->category != 'all') {
             $query->where('category_id', $request->category);
         }

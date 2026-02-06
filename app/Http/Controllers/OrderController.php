@@ -8,18 +8,14 @@ use App\Models\Product;
 
 class OrderController extends Controller
 {
-    /**
-     * Form order
-     */
+    /* form order */
     public function create($id)
     {
         $product = Product::findOrFail($id);
         return view('order.create', compact('product'));
     }
 
-    /**
-     * Simpan order
-     */
+    /* simpan order */
     public function store(Request $request)
     {
         $request->validate([
@@ -48,9 +44,7 @@ class OrderController extends Controller
             ->with('success', 'Order berhasil dibuat. Silakan lakukan pembayaran.');
     }
 
-    /**
-     * Halaman pembayaran QRIS
-     */
+    /* halaman pembayaran paymnet */
     public function payment($id)
     {
         $order = Order::with('product')->findOrFail($id);
